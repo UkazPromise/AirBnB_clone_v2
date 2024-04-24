@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HBNB</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/3-header.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/4-common.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/6-filters.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/8-places.css') }}">
+</head>
+<body>
+    <header class="clearfix">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+        </div>
+        <div class="title">
+            <h1>Holberton School</h1>
+        </div>
+        <div class="filters">
+            <div class="inputs">
+                <input type="text" placeholder="State" class="state_input">
+                <input type="text" placeholder="City" class="city_input">
+                <input type="text" placeholder="Amenity" class="amenity_input">
+            </div>
+            <div class="button">
+                <button>Search</button>
+            </div>
+        </div>
+    </header>
+    <section class="filters_section">
+        <div class="container">
+            <h3>States</h3>
+            <div class="filters_states">
+                {% for state in states.values() %}
+                    <label class="check_container">{{ state.name }}
+                        <input type="checkbox" class="state" data-name="{{ state.name }}" data-id="{{ state.id }}">
+                        <span class="checkmark"></span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="container">
+            <h3>Amenities</h3>
+            <div class="filters_amenities">
+                {% for amenity in amenities.values() %}
+                    <label class="check_container">{{ amenity.name }}
+                        <input type="checkbox" class="amenity" data-name="{{ amenity.name }}" data-id="{{ amenity.id }}">
+                        <span class="checkmark"></span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section class="places_section">
+        <div class="container">
+            {% for place in places.values() %}
+                <article class="place">
+                    <div class="title_place">
+                        <h2>{{ place.name }}</h2>
+                        <div class="price_by_night">${{ place.price_by_night }}</div>
+                    </div>
+                    <div class="information">
+                        <div class="max_guest">
+                            <i class="fa fa-users fa-3x" aria-hidden="true"></i>
+                            <br>{{ place.max_guest }} Guest{% if place.max_guest != 1 %}s{% endif %}
+                        </div>
+                        <div class="number_rooms">
+                            <i class="fa fa-bed fa-3x" aria-hidden="true"></i>
+                            <br>{{ place.number_rooms }} Bedroom{% if place.number_rooms != 1 %}s{% endif %}
+                        </div>
+                        <div class="number_bathrooms">
+                            <i class="fa fa-bath fa-3x" aria-hidden="true"></i>
+                            <br>{{ place.number_bathrooms }} Bathroom{% if place.number_bathrooms != 1 %}s{% endif %}
+                        </div>
+                    </div>
+                    <div class="description">
+                        {{ place.description }}
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="left">
+                <p>&copy; 2024 Holberton School</p>
+            </div>
+            <div class="right">
+                <nav>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Legal</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+

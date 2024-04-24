@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>States</title>
+</head>
+<body>
+    <h1>States</h1>
+    <ul>
+        {% for state in states.values() %}
+        <li>{{ state.id }}: <b>{{ state.name }}</b></li>
+        {% endfor %}
+    </ul>
+
+    {% if state %}
+    <h2>State Information</h2>
+    <p>ID: {{ state.id }}</p>
+    <p>Name: {{ state.name }}</p>
+    {% endif %}
+</body>
+</html>
